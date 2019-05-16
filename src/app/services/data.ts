@@ -1,0 +1,16 @@
+export const sentence = [
+  'king is a strong man',
+  'queen is a wise woman',
+  'boy is a young man',
+  'girl is a young woman',
+  'prince is a young king',
+  'princess is a young queen',
+  'man is strong',
+  'woman is pretty',
+  'prince is a boy will be king',
+  'princess is a girl will be queen',
+  // 'king is a man',
+  // 'prince becomes a king',
+  // 'queen is a woman',
+  // 'king is married to the queen',
+];

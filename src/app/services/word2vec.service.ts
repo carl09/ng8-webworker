@@ -6,13 +6,15 @@ import {
   getUniqueWords,
   generateTrainingData,
   createChartData,
+  ChartData,
 } from './utils';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Word2VecService {
-  public doit() {
+  public doit(): Observable<ChartData[]> {
     const tidySentence = sentence.map(removeStopWords);
     const words = getUniqueWords(tidySentence);
 
@@ -80,25 +82,36 @@ export class Word2VecService {
       encodeLength,
     );
 
+    const output$ = new Subject<ChartData[]>();
+
     model
       .fit(dataTensor, labelTensor, {
-        epochs: 20,
+        epochs: 100,
         shuffle: true,
+        yieldEvery: 'never',
         callbacks: {
           onEpochEnd: async (epoch, logs) => {
-            console.log(epoch, logs.loss);
-            console.log(createChartData(model, words));
+            if (epoch % 10 === 0) {
+              output$.next(createChartData(model, words));
+            }
+
+            // console.log(epoch, logs.loss);
+            // console.log(createChartData(model, words));
           },
         },
       })
       .then(x => {
         dataTensor.dispose();
         labelTensor.dispose();
+        output$.complete();
       })
       .catch(err => {
         dataTensor.dispose();
         labelTensor.dispose();
         console.error(err);
+        output$.error(err);
       });
+
+    return output$.asObservable();
   }
 }

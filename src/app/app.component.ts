@@ -9,9 +9,7 @@ import { Word2VecService } from './services/word2vec.service';
 export class AppComponent implements OnInit {
   title = 'ng8-webworker';
 
-  constructor(private word2VecService: Word2VecService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.word2VecService.doit();
-  }
+  ngOnInit(): void {}
 }

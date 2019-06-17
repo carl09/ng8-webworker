@@ -12,7 +12,7 @@ export class WordMatrixComponent implements OnInit {
   @ViewChild('canvas')
   canvas: ElementRef;
 
-  chart: Chart;
+  public chart: Chart;
 
   constructor(
     private word2VecService: Word2VecService,
@@ -38,11 +38,13 @@ export class WordMatrixComponent implements OnInit {
           xAxes: [
             {
               display: true,
+              drawBorder: false,
             },
           ],
           yAxes: [
             {
               display: true,
+              drawBorder: false,
             },
           ],
           gridLines: {

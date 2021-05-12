@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.14",
     "@tensorflow/tfjs": "^1.2.1",
     "@types/chart.js": "^2.7.52",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.0"
